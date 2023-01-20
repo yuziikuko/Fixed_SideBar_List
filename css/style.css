@@ -1,52 +1,4 @@
-/* iconfont */
-@font-face {
-  font-family: "iconfont"; /* Project id 3867129 */
-  src: url("//at.alicdn.com/t/c/font_3867129_yw1h2xfi3p.woff2?t=1674110301689")
-      format("woff2"),
-    url("//at.alicdn.com/t/c/font_3867129_yw1h2xfi3p.woff?t=1674110301689")
-      format("woff"),
-    url("//at.alicdn.com/t/c/font_3867129_yw1h2xfi3p.ttf?t=1674110301689")
-      format("truetype");
-}
-
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-arrown-up:before {
-  content: "\e616";
-}
-
-.icon-arrown-down:before {
-  content: "\e600";
-}
-
-.icon-address:before {
-  content: "\e608";
-}
-
-.icon-user:before {
-  content: "\e60a";
-}
-
-.icon-form:before {
-  content: "\e613";
-}
-
-.icon-notification:before {
-  content: "\e614";
-}
-
-.icon-lib:before {
-  content: "\e615";
-}
-
 /* container */
-
 * {
   margin: 0;
   padding: 0;
@@ -61,9 +13,6 @@ body {
 .my-header {
   width: 100%;
   height: 80px;
-  position: sticky;
-  top: 0;
-  z-index: 9;
   background-color: #ffffff;
   box-shadow: 0px 16px 40px 0px rgba(112, 144, 176, 0.2);
   color: #303030;
@@ -73,6 +22,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* 滚动时固定在顶部 */
+  position: sticky;
+  top: 0;
+  z-index: 9;
 }
 
 .my-area {
@@ -104,7 +57,7 @@ body {
 
 .my-menu-list {
   width: 1280px;
-  height: auto;
+  height: 750px;
   margin: 100px auto;
   padding: 20px;
   display: flex;
@@ -121,187 +74,14 @@ body {
 }
 
 .my-left-bar {
-  width: max-content;
-}
-
-/* 菜单正常样式 */
-.my-sidebar-static {
-  height: auto;
-  position: static;
-  transition: all linear 0.2s;
-}
-
-.my-left-item {
-  height: 50px;
-  padding: 0 20px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  border-left: 2px solid #cecacb;
-  transition: all linear 0.2s;
-}
-
-.my-left-icon {
-  color: #898989;
-  margin-right: 10px;
-}
-
-.my-left-title {
-  color: #898989;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: left;
-  flex: 1;
-}
-
-.my-left-space {
-  height: 50px;
-  border-left: 2px solid #cecacb;
-}
-
-.my-left-item.active {
-  cursor: default;
-  border-left: 2px solid #d8152a;
-}
-
-.my-left-item.active .my-left-title,
-.my-left-item.active .my-left-icon {
-  color: #d8152a;
-}
-
-/* 菜单粘性样式 */
-.my-sidebar-fixed {
-  height: 90vh;
-  position: fixed;
-  top: 120px;
-  transition: all linear 0.2s;
-}
-
-.faq-sidebar-fixed .faq-left-item {
-  height: 5vh;
-}
-
-.faq-sidebar-fixed .faq-left-space {
-  height: 5vh;
+  width: 100%;
+  height: 100%;
+  background-color: lightgrey;
 }
 
 /* right list */
 .my-right-list {
   flex: 1;
   padding: 0 30px;
-}
-
-.my-right-item {
-  width: 100%;
-  margin-bottom: 200px;
-}
-
-.my-right-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #d8152a;
-  text-align: left;
-  padding-left: 15px;
-  margin-bottom: 30px;
-}
-
-.my-right-content-div {
-  width: 100%;
-  margin-top: 50px;
-}
-
-.my-right-content-title {
-  padding: 20px 15px;
-  border-bottom: 2px solid #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.my-right-content-title:hover {
-  background-color: #ffffff;
-  box-shadow: 0px 16px 40px 0px rgba(112, 144, 176, 0.2);
-  transition: all linear 0.2s;
-}
-
-.my-right-content-title.active:hover {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.my-right-content-question {
-  font-size: 18px;
-  font-weight: bold;
-  color: #303030;
-  text-align: left;
-  transition: all linear 0.2s;
-}
-
-.my-right-content-question.active {
-  color: #d8152a;
-}
-
-.my-right-content-arrow {
-  width: 14px;
-  height: 14px;
-  transform: rotate(0deg);
-  transition: all linear 0.2s;
-}
-
-.my-right-content-arrow.active {
-  transform: rotate(180deg);
-}
-
-.my-right-content-more-div {
-  display: none;
-}
-
-.my-right-content-more {
-  display: block;
-  text-align: center;
-  margin: 50px auto 0;
-  cursor: pointer;
-  width: fit-content;
-  font-size: 14px;
-  color: #d8152a;
-}
-
-.my-right-content {
-  padding: 15px;
-  display: none;
-}
-
-.my-right-content ul,
-.my-right-content ol {
-  margin: 0;
-  padding: 0 0 0 20px;
-}
-
-.my-right-content ul li,
-.my-right-content ol li,
-.my-right-content p {
-  text-align: justify;
-  text-justify: inter-word;
-  font-size: 16px;
-  color: #555555;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.my-right-content a {
-  text-decoration: none;
-  color: #d8152a;
-}
-
-.my-right-content a:hover {
-  border-bottom: 1px solid #d8152a;
-}
-
-.my-right-content-paragraph {
-  font-size: 18px;
-  font-weight: bold;
-  color: #303030;
-  text-align: left;
-  padding: 0 15px 15px;
+  background-color: lightcoral;
 }
