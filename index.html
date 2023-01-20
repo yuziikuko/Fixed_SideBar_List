@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Fixed Side Bar List</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/jquery.min.js"></script>
   </head>
   <body>
     <div class="my-header">这是粘性顶部导航栏</div>
@@ -31,4 +32,52 @@
     </div>
     <div class="my-footer">这是底部导航栏</div>
   </body>
+
+  <script src="js/data.js"></script>
+  <script>
+    // ========== 左侧菜单 ==========
+
+    // 侧边栏切换样式
+    function changeLeftBar(id) {
+      // 遍历菜单项置灰
+      $(".my-left-item").each((index, bar) => {
+        let barImg = $(`#${bar.id} .my-left-icon`);
+        if ($(bar).hasClass("active")) {
+          $(bar).removeClass("active");
+          barImg.removeClass("active");
+        }
+      });
+      // 激活当前点击元素
+      let el = $(`#${id}`);
+      let img = $(`#${id} .my-left-icon`);
+      if (el.hasClass("active")) {
+        el.removeClass("active");
+      } else {
+        el.addClass("active");
+      }
+    }
+
+    // 渲染问答模块左侧菜单
+    function displayLeftBar() {
+      let html = "";
+      $("#my_left_bar").fadeOut(300);
+      $("#my_left_bar").html("");
+      LEFT_BAR.forEach((item) => {
+        html += `
+          <div id="${item.id}" class="my-left-item ${
+          item.is_active ? "active" : ""
+        }" onclick="changeLeftBar('${item.id}')">
+            <i class="iconfont icon-${item.icon} my-left-icon"></i>
+            <span class="my-left-title">${item.title}</span>
+          </div>`;
+        if (item.id !== "lib") {
+          html += `<div class="my-left-space"></div>`;
+        }
+      });
+      $("#my_left_bar").html(html);
+      $("#my_left_bar").fadeIn(300);
+    }
+
+    displayLeftBar();
+  </script>
 </html>
