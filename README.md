@@ -1,37 +1,33 @@
-# Fixed_SideBar_List
+# ✨ Fixed_SideBar_List ✨
 
-#### 介绍
-JQuery实现带粘性侧边栏的列表，滚动时自动切换菜单。
+## 🍮 简介
 
-#### 软件架构
-软件架构说明
+- JQuery 实现带粘性侧边栏的列表，滚动时自动切换菜单。（Desktop+Mobile ver.）
 
+- [在线尝试](https://codesandbox.io/s/side-menu-collapsable-list-5d9bjb?file=/index.html)
 
-#### 安装教程
+- 效果预览：
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+![](./AnimateEffect.gif)
 
-#### 使用说明
+## 🍫 实现功能
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 🍩 顶部导航栏
 
-#### 参与贡献
+- 滚动时固定在页面最上方。
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+#### 🍩 侧边菜单栏
 
+1. 一般状态下和右侧列表构成 flex 左右布局。
+2. 点击菜单滚动到右侧列表相应的红色标题上方。
+3. 滚动距离进入中间白色内容区时固定在侧边。
+4. 滚动距离离开中间白色内容区时恢复一般状态。
+5. 滚动距离进入内容区右侧列表红色标题时，自动切换到相应的菜单栏。
 
-#### 特技
+#### 🍩 右侧列表区
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. 鼠标经过问题时显示白色背景和阴影，问题展开时无此效果。
+2. 点击问题时切换内容展开/折叠状态。
+3. 对于同一个菜单下的问题，每次有且仅有一个被展开，即点击其他问题会折叠当前展开的问题。
+4. 同一个菜单下最多显示 5 个问题，超出的问题隐藏并显示 “Show more”。
+5. 点击 “Show more” 显示当前菜单下所有问题，点击 “Hide” 隐藏当前菜单下超出数量的问题。

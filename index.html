@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fixed Side Bar List</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="my-header">这是粘性顶部导航栏</div>
+    <div class="my-area">
+      <p>这是一个区域</p>
+    </div>
+    <div class="my-menu-list">
+      <div class="my-left-div">
+        <div id="my_left_bar" class="my-left-bar"></div>
+      </div>
+      <div class="my-right-list">
+        <div id="questions_list"></div>
+      </div>
+    </div>
+    <div class="my-area">
+      <p>这是一个区域</p>
+    </div>
+    <div class="my-area">
+      <p>这是一个区域</p>
+    </div>
+    <div class="my-area">
+      <p>这是一个区域</p>
+    </div>
+    <div class="my-footer">这是底部导航栏</div>
+  </body>
+
+  <script src="js/data.js"></script>
+  <script>
+    // 滚动动效
+    function scrollToElementTop(el, offset = 200) {
+      $("html,body").animate(
+        {
+          scrollTop: el.offset().top - offset,
+        },
+        500
+      );
+    }
+
+    // ========== 左侧菜单 ==========
+
+    // 侧边栏切换样式
+    function changeLeftBar(id, icon, needScroll = true) {
+      // 遍历菜单项置灰
+      $(".my-left-item").each((index, bar) => {
+        let barImg = $(`#${bar.id} .my-left-icon`);
+        if ($(bar).hasClass("active")) {
+          $(bar).removeClass("active");
+          barImg.removeClass("active");
+        }
+      });
+      // 激活当前点击元素
+      let el = $(`#${id}`);
+      let img = $(`#${id} .my-left-icon`);
+      if (el.hasClass("active")) {
+        el.removeClass("active");
+      } else {
+        el.addClass("active");
+      }
+      needScroll && scrollToElementTop($(`#${id}_content`));
+    }
+
+    // 渲染问答模块左侧菜单
+    function displayLeftBar() {
+      let html = "";
+      $("#my_left_bar").fadeOut(300);
+      $("#my_left_bar").html("");
+      LEFT_BAR.forEach((item) => {
+        html += `
+          <div id="${item.id}" class="my-left-item ${
+          item.is_active ? "active" : ""
+        }" onclick="changeLeftBar('${item.id}', '${item.icon}')">
+            <i class="iconfont icon-${item.icon} my-left-icon"></i>
+            <span class="my-left-title">${item.title}</span>
+          </div>`;
+        if (item.id !== "lib") {
+          html += `<div class="my-left-space"></div>`;
+        }
+      });
+      $("#my_left_bar").html(html);
+      $("#my_left_bar").fadeIn(300);
+    }
+
+    displayLeftBar();
+
+    // 页面滚动时吸附侧边栏
+    window.addEventListener("scroll", function () {
+      let sideBar = $("#my_left_bar");
+      let windowTop = $(window).scrollTop();
+      let divTop = $(".my-menu-list").offset().top - 100;
+      let divBottom = $(".my-menu-list").height();
+      // if (!which_to_display.isSearching) {
+      // 滚动到问题列表顶部时吸附
+      if (windowTop >= divTop) {
+        sideBar.removeClass("my-sidebar-static");
+        sideBar.addClass("my-sidebar-fixed");
+      }
+      // 回到页面顶部或滚动出问题列表底部时恢复
+      if (windowTop < divTop || windowTop >= divBottom) {
+        sideBar.removeClass("my-sidebar-fixed");
+        sideBar.addClass("my-sidebar-static");
+      }
+      // 滚动到问题标题顶部时激活相应侧边栏菜单项
+      let menuTops = [];
+      LEFT_BAR.forEach((menu) => {
+        menuTops.push({
+          ...menu,
+          offsetTop: $(`#${menu.content_id}`)?.offset()?.top - 300,
+          offsetLeft: $(`#${menu.id}`)?.offset()?.left - 20,
+        });
+      });
+      menuTops.push({
+        id: "my_bottom",
+        content_id: "my_bottom",
+        offsetTop: divTop + divBottom,
+        offsetLeft: 0,
+      });
+      for (let i = 0; i < menuTops.length - 1; i++) {
+        if (
+          windowTop >= menuTops[i].offsetTop &&
+          windowTop < menuTops[i + 1].offsetTop
+        ) {
+          // if (isMobile()) {
+          //   $("#my_left_bar").animate(
+          //     {
+          //       scrollLeft:
+          //         menuTops[i].offsetLeft -
+          //         $("#my_left_bar").offset().left +
+          //         $("#my_left_bar").scrollLeft()
+          //     },
+          //     0
+          //   );
+          // }
+          changeLeftBar(menuTops[i].id, menuTops[i].icon, false);
+        }
+      }
+      // }
+    });
+
+    // ========== 右侧列表 ==========
+
+    // 修改问题激活样式
+    function changeQuestionsActiveClass(el, isCurrent = false) {
+      let title = el.children(".my-right-content-question");
+      let arrow = el.children(".my-right-content-arrow");
+      let content = el.siblings(".my-right-content");
+      if (el.hasClass("active")) {
+        el.removeClass("active");
+        title.removeClass("active");
+        arrow.removeClass("active");
+        content.slideUp(300);
+      } else {
+        if (isCurrent) {
+          el.addClass("active");
+          title.addClass("active");
+          arrow.addClass("active");
+          content.slideDown(300);
+        }
+      }
+    }
+
+    // 问答折叠
+    function handleQuestionsChanges(el) {
+      // 清除当前类别下的激活问题
+      let otherEl = el
+        .parent(".my-right-content-div")
+        .siblings(".my-right-content-div")
+        .children(".my-right-content-title");
+      changeQuestionsActiveClass(otherEl);
+      // 激活当前点击的问题
+      changeQuestionsActiveClass(el, true);
+    }
+
+    // 渲染问答模块右侧列表
+    function displayRightList() {
+      $("#questions_list").fadeOut(300);
+      $("#questions_list").html("");
+      RIGHT_LIST.forEach((list) => {
+        let html = `
+          <div class="my-right-item" id=${list.id}>
+            <div class="my-right-title">${list.title}</div>`;
+        list.questions.forEach((question) => {
+          if (parseInt(question.id) <= 5) {
+            // 前五个问题正常显示
+            html += `
+              <div class="my-right-content-div">
+                <div class="my-right-content-title" id="${question.id}">
+                  <div class="my-right-content-question">
+                    ${question.title}
+                  </div>
+                  <i class="iconfont icon-arrown-down my-right-content-arrow"></i>
+                </div>
+                <div class="my-right-content">
+                  ${question.contents}
+                </div>
+              </div>`;
+          } else {
+            // 超过五个问题时带上my-right-content-more-div类
+            html += `
+              <div class="my-right-content-div my-right-content-more-div">
+                <div class="my-right-content-title" id="${question.id}">
+                  <div class="my-right-content-question">
+                    ${question.title}
+                  </div>
+                  <i class="iconfont icon-arrown-down my-right-content-arrow"></i>
+                </div>
+                <div class="my-right-content">
+                  ${question.contents}
+                </div>
+              </div>`;
+            if (parseInt(question.id) === list.questions.length) {
+              // 超过五个问题时末尾追加Show more文本按钮
+              html += `
+              <div class="my-right-content-more">
+                <span>Show more</span>
+                <i class="iconfont icon-arrown-down my-right-content-arrow"></i>
+              </div>`;
+            }
+          }
+        });
+        html += "</div>";
+        $("#questions_list").append(html);
+      });
+      $("#questions_list").fadeIn(300);
+      // 点击问题折叠同类目下其他问题，再展开自身
+      $(".my-right-content-title").click(function () {
+        handleQuestionsChanges($(this));
+      });
+      // 点击 Show more / hide 时切换超过五个的问题显示状态
+      $(".my-right-content-more").click(function () {
+        let moreDiv = $(this).siblings(".my-right-content-more-div");
+        let textSpan = $(this).children("span");
+        let textIcon = $(this).children(".my-right-content-arrow");
+        if (textSpan.html() === "Show more") {
+          moreDiv.slideDown(300);
+          textSpan.html("Hide");
+          textIcon.removeClass("icon-arrown-down").addClass("icon-arrown-up");
+        } else {
+          moreDiv.slideUp(300);
+          textSpan.html("Show more");
+          textIcon.removeClass("icon-arrown-up").addClass("icon-arrown-down");
+        }
+      });
+    }
+
+    displayRightList();
+  </script>
+</html>

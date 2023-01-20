@@ -1,36 +1,33 @@
-# Fixed_SideBar_List
+# ✨ Fixed_SideBar_List ✨
 
-#### Description
-JQuery实现带粘性侧边栏的列表，滚动时自动切换菜单。
+## 🍮 Introduction
 
-#### Software Architecture
-Software architecture description
+- Use JQuery to implement lists with sticky sidebars that automatically switch menus as you scroll. (Desktop+Mobile ver.)
 
-#### Installation
+- [Online Trial](https://codesandbox.io/s/side-menu-collapsable-list-5d9bjb?file=/index.html)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+- Effect Preview:
 
-#### Instructions
+![](./AnimateEffect.gif)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## 🍫 Implemented Function
 
-#### Contribution
+#### 🍩 The Top Navigation Bar
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+- Fixed at the top of the page when scrolling.
 
+#### 🍩 The Side Menu Bar
 
-#### Gitee Feature
+1. In general, form a flex layout with the list on the right.
+2. When you click the menu, scroll to the list on the right above the appropriate red heading.
+3. The sidebar is fixed to the side when you enter the white content area in the middle.
+4. When you leave the white content area in the middle, the sidebar returns to normal.
+5. When you enter the red title list on the right of the content area, you will automatically switch to the corresponding menu bar.
 
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 🍩 The Right List Area
+
+1. A white background and shadow is displayed when the mouse passes over the question, but not when the question is expanded.
+2. Toggle the expand/collapse state of the content when clicking on the question.
+3. For questions under the same menu, one and only one is expanded at a time, that is, clicking on other questions will collapse the currently expanded question.
+4. A maximum of five questions can be displayed under the same menu. The "Show more" is displayed to hide the redundant questions.
+5. Click "Show more" to display all the questions under the current menu, and click "Hide" to hide the extra questions under the current menu.
