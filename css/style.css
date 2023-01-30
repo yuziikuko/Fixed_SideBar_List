@@ -255,6 +255,20 @@ body {
   transform: rotate(180deg);
 }
 
+.my-right-content-more-div {
+  display: none;
+}
+
+.my-right-content-more {
+  display: block;
+  text-align: center;
+  margin: 50px auto 0;
+  cursor: pointer;
+  width: fit-content;
+  font-size: 14px;
+  color: #d8152a;
+}
+
 /* 问题内容的样式 */
 .my-right-content {
   padding: 15px;

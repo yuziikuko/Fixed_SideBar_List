@@ -171,18 +171,43 @@
           <div class="my-right-item" id=${list.id}>
             <div class="my-right-title">${list.title}</div>`;
         list.questions.forEach((question) => {
-          html += `
-            <div class="my-right-content-div">
-              <div class="my-right-content-title" id="${question.id}">
-                <div class="my-right-content-question">
-                  ${question.title}
+          if (parseInt(question.id) <= 5) {
+            // 前五个问题正常显示
+            html += `
+              <div class="my-right-content-div">
+                <div class="my-right-content-title" id="${question.id}">
+                  <div class="my-right-content-question">
+                    ${question.title}
+                  </div>
+                  <i class="iconfont icon-arrown-down my-right-content-arrow"></i>
                 </div>
+                <div class="my-right-content">
+                  ${question.contents}
+                </div>
+              </div>`;
+          } else {
+            // 超过五个问题时带上my-right-content-more-div类
+            html += `
+              <div class="my-right-content-div my-right-content-more-div">
+                <div class="my-right-content-title" id="${question.id}">
+                  <div class="my-right-content-question">
+                    ${question.title}
+                  </div>
+                  <i class="iconfont icon-arrown-down my-right-content-arrow"></i>
+                </div>
+                <div class="my-right-content">
+                  ${question.contents}
+                </div>
+              </div>`;
+            if (parseInt(question.id) === list.questions.length) {
+              // 超过五个问题时末尾追加Show more文本按钮
+              html += `
+              <div class="my-right-content-more">
+                <span>Show more</span>
                 <i class="iconfont icon-arrown-down my-right-content-arrow"></i>
-              </div>
-              <div class="my-right-content">
-                ${question.contents}
-              </div>
-            </div>`;
+              </div>`;
+            }
+          }
         });
         html += "</div>";
         $("#questions_list").append(html);
@@ -191,6 +216,21 @@
       // 点击问题折叠同类目下其他问题，再展开自身
       $(".my-right-content-title").click(function () {
         handleQuestionsChanges($(this));
+      });
+      // 点击 Show more / hide 时切换超过五个的问题显示状态
+      $(".my-right-content-more").click(function () {
+        let moreDiv = $(this).siblings(".my-right-content-more-div");
+        let textSpan = $(this).children("span");
+        let textIcon = $(this).children(".my-right-content-arrow");
+        if (textSpan.html() === "Show more") {
+          moreDiv.slideDown(300);
+          textSpan.html("Hide");
+          textIcon.removeClass("icon-arrown-down").addClass("icon-arrown-up");
+        } else {
+          moreDiv.slideUp(300);
+          textSpan.html("Show more");
+          textIcon.removeClass("icon-arrown-up").addClass("icon-arrown-down");
+        }
       });
     }
 
