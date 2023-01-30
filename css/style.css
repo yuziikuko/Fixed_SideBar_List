@@ -124,6 +124,13 @@ body {
   width: max-content;
 }
 
+/* 菜单正常样式 */
+.my-sidebar-static {
+  height: auto;
+  position: static;
+  transition: all linear 0.2s;
+}
+
 .my-left-item {
   height: 50px;
   padding: 0 20px;
@@ -160,6 +167,22 @@ body {
 .my-left-item.active .my-left-title,
 .my-left-item.active .my-left-icon {
   color: #d8152a;
+}
+
+/* 菜单粘性样式 */
+.my-sidebar-fixed {
+  height: 90vh;
+  position: fixed;
+  top: 120px;
+  transition: all linear 0.2s;
+}
+
+.faq-sidebar-fixed .faq-left-item {
+  height: 5vh;
+}
+
+.faq-sidebar-fixed .faq-left-space {
+  height: 5vh;
 }
 
 /* right list */

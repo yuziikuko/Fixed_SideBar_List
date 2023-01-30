@@ -80,6 +80,22 @@
 
     displayLeftBar();
 
+    // 页面滚动时吸附侧边栏
+    window.addEventListener("scroll", function () {
+      let sideBar = $("#my_left_bar");
+      let windowTop = $(window).scrollTop();
+      let divTop = $(".my-menu-list").offset().top - 100;
+      let divBottom = $(".my-menu-list").height();
+      // 滚动到问题列表顶部时吸附
+      if (windowTop >= divTop) {
+        sideBar.removeClass("my-sidebar-static").addClass("my-sidebar-fixed");
+      }
+      // 回到页面顶部或滚动出问题列表底部时恢复
+      if (windowTop < divTop || windowTop >= divBottom) {
+        sideBar.removeClass("my-sidebar-fixed").addClass("my-sidebar-static");
+      }
+    });
+
     // ========== 右侧列表 ==========
 
     // 修改问题激活样式
