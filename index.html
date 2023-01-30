@@ -35,10 +35,20 @@
 
   <script src="js/data.js"></script>
   <script>
+    // 滚动动效
+    function scrollToElementTop(el, offset = 200) {
+      $("html,body").animate(
+        {
+          scrollTop: el.offset().top - offset,
+        },
+        500
+      );
+    }
+
     // ========== 左侧菜单 ==========
 
     // 侧边栏切换样式
-    function changeLeftBar(id) {
+    function changeLeftBar(id, needScroll = true) {
       // 遍历菜单项置灰
       $(".my-left-item").each((index, bar) => {
         let barImg = $(`#${bar.id} .my-left-icon`);
@@ -55,6 +65,7 @@
       } else {
         el.addClass("active");
       }
+      needScroll && scrollToElementTop($(`#${id}_content`));
     }
 
     // 渲染问答模块左侧菜单
@@ -93,6 +104,27 @@
       // 回到页面顶部或滚动出问题列表底部时恢复
       if (windowTop < divTop || windowTop >= divBottom) {
         sideBar.removeClass("my-sidebar-fixed").addClass("my-sidebar-static");
+      }
+      // 滚动到问题标题顶部时激活相应侧边栏菜单项
+      let menuTops = [];
+      LEFT_BAR.forEach((menu) => {
+        menuTops.push({
+          ...menu,
+          offsetTop: $(`#${menu.content_id}`)?.offset()?.top - 300,
+        });
+      });
+      menuTops.push({
+        id: "my_bottom",
+        content_id: "my_bottom",
+        offsetTop: divTop + divBottom,
+      });
+      for (let i = 0; i < menuTops.length - 1; i++) {
+        if (
+          windowTop >= menuTops[i].offsetTop &&
+          windowTop < menuTops[i + 1].offsetTop
+        ) {
+          changeLeftBar(menuTops[i].id, false);
+        }
       }
     });
 
