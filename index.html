@@ -45,6 +45,11 @@
       );
     }
 
+    //判断设备
+    function isMobile() {
+      return window.innerWidth < 768;
+    }
+
     // ========== 左侧菜单 ==========
 
     // 侧边栏切换样式
@@ -111,18 +116,31 @@
         menuTops.push({
           ...menu,
           offsetTop: $(`#${menu.content_id}`)?.offset()?.top - 300,
+          offsetLeft: $(`#${menu.id}`)?.offset()?.left - 20,
         });
       });
       menuTops.push({
         id: "my_bottom",
         content_id: "my_bottom",
         offsetTop: divTop + divBottom,
+        offsetLeft: 0,
       });
       for (let i = 0; i < menuTops.length - 1; i++) {
         if (
           windowTop >= menuTops[i].offsetTop &&
           windowTop < menuTops[i + 1].offsetTop
         ) {
+          if (isMobile()) {
+            $("#my_left_bar").animate(
+              {
+                scrollLeft:
+                  menuTops[i].offsetLeft -
+                  $("#my_left_bar").offset().left +
+                  $("#my_left_bar").scrollLeft(),
+              },
+              0
+            );
+          }
           changeLeftBar(menuTops[i].id, false);
         }
       }

@@ -308,3 +308,231 @@ body {
   text-align: left;
   padding: 0 15px 15px;
 }
+
+/* 适配移动端样式 */
+@media only screen and (max-width: 767px) {
+  .my-menu-list {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+    overflow: auto;
+  }
+
+  /* left menu */
+  .my-left-div {
+    width: 100%;
+    margin: 0 auto 10vw;
+    overflow-x: auto;
+    position: relative;
+  }
+
+  /* 隐藏横向滚动条 */
+  .my-left-div::-webkit-scrollbar,
+  .my-sidebar-fixed::-webkit-scrollbar {
+    display: none;
+  }
+
+  .my-left-bar {
+    width: max-content;
+    display: flex !important;
+    align-items: center;
+  }
+
+  .show-head-bg {
+    box-shadow: none !important;
+  }
+
+  .my-sidebar-fixed {
+    z-index: 2;
+    width: 100vw;
+    height: auto;
+    overflow-x: auto;
+    position: fixed;
+    top: 20vw;
+    background-color: #ffffff;
+    box-shadow: 0px 16px 40px 0px rgba(112, 144, 176, 0.2);
+    transition: all linear 0.2s;
+  }
+
+  .my-sidebar-static {
+    position: static;
+    transition: all linear 0.2s;
+  }
+
+  .my-left-item {
+    height: 12vw;
+    margin: 0 5vw;
+    padding: 5vw 1.5vw 0;
+    display: flex;
+    align-items: center;
+    transition: all linear 0.5s;
+    border-bottom: 1vw solid transparent;
+    border-left: none;
+  }
+
+  .my-left-icon {
+    margin-right: 1.5vw;
+    font-size: 4vw;
+  }
+
+  .my-left-title {
+    color: #898989;
+    font-size: 4vw;
+    font-weight: bold;
+    text-align: left;
+    flex: 1;
+  }
+
+  .my-left-space {
+    display: none;
+  }
+
+  .my-left-item.active {
+    border-bottom: 1vw solid #d8152a;
+    border-left: none;
+  }
+
+  .my-left-item.active .my-left-title {
+    color: #d8152a;
+  }
+
+  /* right list */
+  .my-right-list {
+    flex: 1;
+    padding: 0 5vw;
+  }
+
+  .my-right-item {
+    width: 100%;
+    margin-bottom: 30vw;
+  }
+
+  .my-right-title {
+    font-size: 5vw;
+    font-weight: bold;
+    color: #d8152a;
+    text-align: left;
+    padding-left: 3vw;
+    margin-bottom: 10vw;
+  }
+
+  .my-right-content-div {
+    width: 100%;
+    margin-top: 5vw;
+  }
+
+  .my-right-content-more-div {
+    display: none;
+  }
+
+  .my-right-content-more {
+    display: block;
+  }
+
+  .my-right-content-title {
+    padding: 3vw;
+    border-bottom: 0.5vw solid #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .my-right-content-title:hover {
+    background-color: transparent;
+    box-shadow: none;
+    transition: none;
+  }
+
+  .my-right-content-question {
+    font-size: 4vw;
+    font-weight: bold;
+    color: #303030;
+    text-align: left;
+    transition: all linear 0.2s;
+  }
+
+  .my-right-content-question.active {
+    color: #d8152a;
+  }
+
+  .my-right-content-arrow {
+    width: 4vw;
+    height: 4vw;
+    transform: rotate(0deg);
+    transition: all linear 0.2s;
+  }
+
+  .my-right-content-arrow.active {
+    transform: rotate(180deg);
+  }
+
+  .my-right-content {
+    padding: 3vw;
+    display: none;
+  }
+
+  .my-right-content ul,
+  .my-right-content ol {
+    margin: 0;
+    padding: 0 0 0 3vw;
+  }
+
+  .my-right-content ul li,
+  .my-right-content ol li,
+  .my-right-content p {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 3vw;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 5vw;
+  }
+
+  .my-right-content a {
+    text-decoration: none;
+    color: #d8152a;
+  }
+
+  .my-right-content a:hover {
+    border-bottom: 0.5vw solid #d8152a;
+  }
+
+  .my-right-content-paragraph {
+    font-size: 3vw;
+    font-weight: bold;
+    color: #303030;
+    text-align: left;
+    padding: 0 3vw 3vw;
+  }
+
+  .my-right-content-more {
+    width: 100%;
+    margin: 5vw 0;
+    font-size: 3vw;
+    color: #d8152a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .my-right-content-more span {
+    margin-right: 3vw;
+  }
+
+  .my-right-content-more .my-right-content-arrow {
+    width: 3vw;
+    height: 3vw;
+    transform: rotate(0deg);
+    transition: all linear 0.2s;
+  }
+
+  .my-right-content-more .my-right-content-arrow.active {
+    transform: rotate(-180deg);
+  }
+}
