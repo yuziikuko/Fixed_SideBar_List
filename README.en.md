@@ -1,14 +1,16 @@
 # ✨ Fixed_SideBar_List ✨
 
+## 🍬 Blogs
+
+- [稀土掘金](https://juejin.cn/post/7195477856024494136)
+- [CSDN](https://blog.csdn.net/qq_41728543/article/details/128853209?spm=1001.2014.3001.5502)
+
 ## 🍮 Introduction
 
-- Use JQuery to implement lists with sticky sidebars that automatically switch menus as you scroll. (Desktop+Mobile ver.)
-
+- Use JQuery to implement lists with sticky sidebars that automatically switch menus as you scroll. (Desktop + Mobile ver.)
 - [Online Trial](https://codesandbox.io/s/side-menu-collapsable-list-5d9bjb?file=/index.html)
-
 - Effect Preview:
-
-![](./AnimateEffect.gif)
+  ![](./AnimateEffect.gif)
 
 ## 🍫 Implemented Function
 

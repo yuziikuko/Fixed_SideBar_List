@@ -1,14 +1,16 @@
 # ✨ Fixed_SideBar_List ✨
 
+## 🍬 博客
+
+- [稀土掘金](https://juejin.cn/post/7195477856024494136)
+- [CSDN](https://blog.csdn.net/qq_41728543/article/details/128853209?spm=1001.2014.3001.5502)
+
 ## 🍮 简介
 
-- JQuery 实现带粘性侧边栏的列表，滚动时自动切换菜单。（Desktop+Mobile ver.）
-
+- JQuery 实现带粘性侧边栏的列表，滚动时自动切换菜单。（Desktop + Mobile ver.）
 - [在线尝试](https://codesandbox.io/s/side-menu-collapsable-list-5d9bjb?file=/index.html)
-
 - 效果预览：
-
-![](./AnimateEffect.gif)
+  ![](./AnimateEffect.gif)
 
 ## 🍫 实现功能
 
