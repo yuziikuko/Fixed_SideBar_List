@@ -177,11 +177,11 @@ body {
   transition: all linear 0.2s;
 }
 
-.faq-sidebar-fixed .faq-left-item {
+.my-sidebar-fixed .my-left-item {
   height: 5vh;
 }
 
-.faq-sidebar-fixed .faq-left-space {
+.my-sidebar-fixed .my-left-space {
   height: 5vh;
 }
 
