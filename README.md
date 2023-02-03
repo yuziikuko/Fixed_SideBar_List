@@ -2,6 +2,7 @@
 
 ## 🍬 博客
 
+- [Gitee Page](https://yuziikuko.gitee.io/articles/02.html)
 - [稀土掘金](https://juejin.cn/post/7195477856024494136)
 - [CSDN](https://blog.csdn.net/qq_41728543/article/details/128853209?spm=1001.2014.3001.5502)
 
